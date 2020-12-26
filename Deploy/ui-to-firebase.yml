@@ -1,0 +1,51 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - MaintenanceUI/*
+
+variables:
+  fbtoken: '1//03F8Czv5LqTSzCgYIARAAGAMSNwF-L9IrM-i4SX_yAy2UZVtKQi6iBAE3vLvBw-4qZRoAVpnX_rpdhpgABxs74RAEXfiTFVB6dq0'
+  workdir: $(System.DefaultWorkingDirectory)/MaintenanceUI
+  dist: $(System.DefaultWorkingDirectory)/MaintenanceUI/dist/maintenance-ui
+
+stages:
+  - stage: default
+
+    jobs:
+      - job: Job
+        pool:
+          vmImage: 'ubuntu-latest'
+
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: 'Install Node.js'
+
+          - script: |
+              npm install -g firebase-tools
+            displayName: 'install firebase cli'
+
+          - script: |
+              npm install -g @angular/cli
+              npm install
+              ng build --prod
+            workingDirectory: $(workdir)
+            displayName: 'npm install and build'
+
+          - script: |
+              firebase deploy --token $TOKEN
+            workingDirectory: $(workdir)
+            env:
+              TOKEN: $(fbtoken)
+            displayName: 'deploy to firebase'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: $(dist)
+              ArtifactName: 'ngapp'
+              publishLocation: 'Container'
+            displayName: 'Publish Artifacts'
