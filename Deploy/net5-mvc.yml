@@ -3,6 +3,10 @@ trigger:
   branches:
     include:
       - master
+  paths:
+  include:
+    - net5app/*
+
 pool:
   vmImage: "ubuntu-latest"
 
