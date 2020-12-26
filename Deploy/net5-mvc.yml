@@ -58,6 +58,6 @@ stages:
           - task: AzureWebApp@1
             displayName: "Azure Web App Deploy"
             inputs:
-              azureSubscription: "conHosting"
+              azureSubscription: "conNet5App"
               appType: "webApp"
               appName: "$(appService)"
