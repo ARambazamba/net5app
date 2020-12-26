@@ -1,4 +1,4 @@
-name: "api-to-appservice"
+name: "multistage-mvc"
 trigger:
   branches:
     include:
