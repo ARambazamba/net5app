@@ -52,15 +52,16 @@ stages:
             workingDirectory: $(uiPath)
 
           - task: AzureCLI@2
-            displayName: Azure CLI
+            displayName: Upload to Static Website
             inputs:
               azureSubscription: $(serviceConnection)
               scriptType: bash
               scriptLocation: inlineScript
               inlineScript: |
+                ls
                 acct=$(acctName)
                 key=$(acctKey)
-                az storage blob upload-batch --account-name $acct --account-key $key -s ./ngUI/dist/ngapp -d '$web'
+                az storage blob upload-batch --account-name $acct --account-key $key -s /ngUI/dist/ngapp -d '$web'
 
           - task: PublishBuildArtifacts@1
             inputs:
