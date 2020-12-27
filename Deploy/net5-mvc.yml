@@ -14,6 +14,19 @@ variables:
   appService: "net5-mvc-at"
 
 stages:
+  - stage: "Provision"
+    jobs:
+      - job: "Provision"
+        displayName: "Provision App Service"
+
+        steps:
+          - task: AzureCLI@2
+            displayName: Azure CLI
+            inputs:
+              azureSubscription: "conNet5App"
+              scriptType: bash
+              scriptLocation: https://raw.githubusercontent.com/ARambazamba/net5app/main/Deploy/provision-ressources.azcli
+
   - stage: "Build"
     jobs:
       - job: "Build"
