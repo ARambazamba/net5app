@@ -64,7 +64,7 @@ stages:
           - task: DownloadBuildArtifacts@0
             inputs:
               artifactName: "drop"
-              targetPath: "$(System.DefaultWorkingDirectory)"
+              downloadPath: "$(System.DefaultWorkingDirectory)"
 
           - task: AzureWebApp@1
             displayName: "Azure Web App Deploy"
