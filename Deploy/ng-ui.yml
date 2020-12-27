@@ -15,6 +15,7 @@ variables:
   serviceConnection: "conNet5App"
   uiPath: "ngUI/"
   ngScript: "create-static-website.sh"
+  artifact: "ngapp"
 
 stages:
   - stage: "Provision"
@@ -51,7 +52,7 @@ stages:
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: "ngUI/dist/ngUI"
-              ArtifactName: "ngapp"
+              ArtifactName: $(artifact)
               publishLocation: "Container"
             displayName: "Publish build"
 
@@ -63,7 +64,7 @@ stages:
         steps:
           - task: DownloadBuildArtifacts@0
             inputs:
-              artifactName: "drop"
+              artifactName: $(artifact)
               downloadPath: "$(System.DefaultWorkingDirectory)"
 
           - task: AzureFileCopy@4
