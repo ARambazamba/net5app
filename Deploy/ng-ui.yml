@@ -38,4 +38,4 @@ stages:
               PathtoPublish: "dist/ngUI"
               ArtifactName: "ngapp"
               publishLocation: "Container"
-            displayName: "Publish Artifacts"
+            displayName: "Publish build"
