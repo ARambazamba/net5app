@@ -34,7 +34,7 @@ stages:
               azureSubscription: "conNet5App"
               scriptType: bash
               scriptLocation: scriptPath
-              scriptPath: "/Deploy/provision-ressources.azcli"
+              scriptPath: "Deploy/provision-ressources.sh"
 
   - stage: "Build"
     jobs:
