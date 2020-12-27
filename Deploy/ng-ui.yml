@@ -16,6 +16,8 @@ variables:
   uiPath: "ngUI/"
   ngScript: "create-static-website.sh"
   artifact: "ngapp"
+  acctName: "net5ngui"
+  acctKey: "vzKZMetc+2XuQsAa88fiNpkWfHQQxfFkma/lJwFXohaFmOcM/ljnkiVKD1CZbUriZFGMhYD05//gTzQ0eqqy6g=="
 
 stages:
   - stage: "Provision"
@@ -56,8 +58,8 @@ stages:
               scriptType: bash
               scriptLocation: inlineScript
               inlineScript: |
-                acct=net5ngui
-                key='vzKZMetc+2XuQsAa88fiNpkWfHQQxfFkma/lJwFXohaFmOcM/ljnkiVKD1CZbUriZFGMhYD05//gTzQ0eqqy6g=='
+                acct=$(acctName)
+                key=$(acctKey)
                 az storage blob upload-batch --account-name $acct --account-key $key -s ./ngUI/dist/ngapp -d '$web'
 
           - task: PublishBuildArtifacts@1
