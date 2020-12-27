@@ -54,3 +54,21 @@ stages:
               ArtifactName: "ngapp"
               publishLocation: "Container"
             displayName: "Publish build"
+
+  - stage: "Deploy"
+    jobs:
+      - job: "Deploy"
+        displayName: "Deploy App"
+
+        steps:
+          - task: DownloadBuildArtifacts@0
+            inputs:
+              artifactName: "drop"
+              downloadPath: "$(System.DefaultWorkingDirectory)"
+
+          - task: AzureFileCopy@4
+            inputs:
+              sourcePath: "drop/ngapp/"
+              azureSubscription: $(serviceConnection)
+              destination: azureBlob
+              containerName: "$web"
