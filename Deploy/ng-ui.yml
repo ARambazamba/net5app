@@ -2,7 +2,7 @@ name: "ng-ui-blobstorage"
 trigger:
   branches:
     include:
-      - master
+      - main
   paths:
     include:
       - ngUI/*

@@ -2,7 +2,7 @@ name: "multistage-mvc"
 trigger:
   branches:
     include:
-      - master
+      - main
   paths:
     include:
       - net5app/*
