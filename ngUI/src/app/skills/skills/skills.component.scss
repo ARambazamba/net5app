@@ -1,5 +1,16 @@
-.skill {
+.rowItem {
   margin: 1rem;
   padding: 1rem;
-  background-color: lavender;
+  min-width: 300px;
+  background-color: #1a76d2;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.rowHeader {
+  margin: 1rem;
+  padding: 1rem;
+  min-width: 300px;
+  background-color: #dd0130;
+  color: whitesmoke;
 }

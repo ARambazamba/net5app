@@ -1,6 +1,6 @@
-<h4>Skills</h4>
 <div>
-  <div *ngFor="let skill of skills$ | async" class="skill">
+  <div class="rowHeader">Skills</div>
+  <div *ngFor="let skill of skills$ | async" class="rowItem">
     {{ skill.name }}
   </div>
 </div>
