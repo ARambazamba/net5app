@@ -36,7 +36,7 @@ stages:
 
   - stage: Build and Deploy
     jobs:
-      - job: Build and Deploy
+      - job: Build_Deploy
 
         steps:
           - task: NodeTool@0
