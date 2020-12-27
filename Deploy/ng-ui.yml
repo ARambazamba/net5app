@@ -56,12 +56,12 @@ stages:
               publishLocation: "Container"
             displayName: "Publish build"
 
-  - stage: "Deploy"
-    pool:
-    vmImage: "windows-latest"
+  - stage: "Deploy"   
     jobs:
       - job: "Deploy"
         displayName: "Deploy App"
+        pool:
+          vmImage: "windows-latest"
 
         steps:
           - task: DownloadBuildArtifacts@0
@@ -71,7 +71,8 @@ stages:
 
           - task: AzureFileCopy@4
             inputs:
-              sourcePath: "drop/ngapp/"
-              azureSubscription: $(serviceConnection)
-              destination: azureBlob
-              containerName: "$web"
+              SourcePath: 'drop/ngapp/*'
+              azureSubscription: 'conNet5App'
+              Destination: 'AzureBlob'
+              storage: 'net5ngui'
+              ContainerName: '$web'
