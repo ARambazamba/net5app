@@ -13,7 +13,9 @@ pool:
 variables:
   azureSubscription: "Visual Studio Enterprise (78033352-805c-4acd-af80-f8f95083268d)"
   buildConfiguration: "Release"
+  serviceConnection: "conNet5App"
   apiPath: "net5app/"
+  apiScript: "provision-api.sh"
   appService: "net5-mvc-at"
 
 stages:
@@ -26,10 +28,10 @@ stages:
           - task: AzureCLI@2
             displayName: Azure CLI
             inputs:
-              azureSubscription: "conNet5App"
+              azureSubscription: $(serviceConnection)
               scriptType: bash
               scriptLocation: scriptPath
-              scriptPath: "Deploy/provision-ressources.sh"
+              scriptPath: Deploy/$(apiScript)
 
   - stage: "Build"
     jobs:
@@ -72,6 +74,6 @@ stages:
           - task: AzureWebApp@1
             displayName: "Azure Web App Deploy"
             inputs:
-              azureSubscription: "conNet5App"
+              azureSubscription: $(serviceConnection)
               appType: "webApp"
               appName: "$(appService)"
