@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "ngUI"
+  "defaultProject": "ngUI",
+  "cli": {
+    "analytics": "0fb36f99-adfa-43e1-81e9-e3054dce027b"
+  }
 }

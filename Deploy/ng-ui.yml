@@ -45,8 +45,8 @@ stages:
             displayName: "Install Node.js"
 
           - script: |
-              npm install -g @angular/cli
-              npm install
+              npm i -g @angular/cli
+              npm i
               ng build --prod
             displayName: "npm install and build"
             workingDirectory: $(uiPath)
@@ -61,7 +61,7 @@ stages:
                 ls
                 acct=$(acctName)
                 key=$(acctKey)
-                az storage blob upload-batch --account-name $acct --account-key $key -s $(System.DefaultWorkingDirectory)/net5app/ngUI/dist/ngapp/ -d '$web'
+                az storage blob upload-batch --account-name $acct --account-key $key -s $(System.DefaultWorkingDirectory)/ngUI/dist/ngUI/ -d '$web'
 
           - task: PublishBuildArtifacts@1
             inputs:
