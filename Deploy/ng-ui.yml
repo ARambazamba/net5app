@@ -59,6 +59,9 @@ stages:
               scriptLocation: inlineScript
               inlineScript: |
                 ls
+                cd ngUI
+                cd dist
+                ls
                 acct=$(acctName)
                 key=$(acctKey)
                 az storage blob upload-batch --account-name $acct --account-key $key -s ./ngUI/dist/ngapp -d '$web'
