@@ -12,6 +12,7 @@ pool:
 
 variables:
   azureSubscription: "Visual Studio Enterprise (78033352-805c-4acd-af80-f8f95083268d)"
+  serviceConnection: "conNet5App"
   uiPath: "ngUI/"
   ngScript: "create-static-website.sh"
 
@@ -31,7 +32,6 @@ stages:
               scriptPath: Deploy/$(ngScript)
 
   - stage: Build
-
     jobs:
       - job: Build
 
