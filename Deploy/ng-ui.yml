@@ -75,4 +75,4 @@ stages:
               azureSubscription: 'conNet5App'
               Destination: 'AzureBlob'
               storage: 'net5ngui'
-              ContainerName: '$web'
+              ContainerName: $web
