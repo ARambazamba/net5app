@@ -25,7 +25,8 @@ stages:
             inputs:
               azureSubscription: "conNet5App"
               scriptType: bash
-              scriptLocation: https://raw.githubusercontent.com/ARambazamba/net5app/main/Deploy/provision-ressources.azcli
+              scriptLocation: scriptPath
+              scriptPath: 'https://raw.githubusercontent.com/ARambazamba/net5app/main/Deploy/provision-ressources.azcli'
 
   - stage: "Build"
     jobs:
