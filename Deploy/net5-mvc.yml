@@ -23,8 +23,10 @@ stages:
           - task: Bash@3
             inputs:
               targetType: inline
-              script: ls
-              #workingDirectory:  # Optional
+              script: |
+                ls
+                cd Deploy
+                ls
 
           - task: AzureCLI@2
             displayName: Azure CLI
