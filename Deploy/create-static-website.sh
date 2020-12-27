@@ -1,6 +1,6 @@
 grp=Hosting
 loc=westeurope
-acct=net5-ng-ui
+acct=net5ngui
 path='./ngUI/dist/ngUI'
 
 az group create -n $grp -l $loc
