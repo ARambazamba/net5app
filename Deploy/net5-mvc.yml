@@ -20,13 +20,19 @@ stages:
         displayName: "Provision App Service"
 
         steps:
+          - task: Bash@3
+            inputs:
+              targetType: inline
+              script: ls
+              #workingDirectory:  # Optional
+
           - task: AzureCLI@2
             displayName: Azure CLI
             inputs:
               azureSubscription: "conNet5App"
               scriptType: bash
               scriptLocation: scriptPath
-              scriptPath: 'https://raw.githubusercontent.com/ARambazamba/net5app/main/Deploy/provision-ressources.azcli'
+              scriptPath: "https://raw.githubusercontent.com/ARambazamba/net5app/main/Deploy/provision-ressources.azcli"
 
   - stage: "Build"
     jobs:
