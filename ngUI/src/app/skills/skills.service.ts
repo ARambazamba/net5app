@@ -23,7 +23,8 @@ export class SkillsService {
       tap((url) => console.log('url', url)),
       switchMap((url) => {
         return this.httpClient.get<Skill[]>(`${url}api/skills`);
-      })
+      }),
+      tap((data) => console.log('data', data))
     );
 
     // latency
