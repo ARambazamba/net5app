@@ -69,24 +69,3 @@ stages:
               ArtifactName: $(artifact)
               publishLocation: "Container"
             displayName: "Publish build"
-
-  # - stage: "Deploy"
-  #   jobs:
-  #     - job: "Deploy"
-  #       displayName: "Deploy App"
-  #       pool:
-  #         vmImage: "windows-latest"
-
-  #       steps:
-  #         - task: DownloadBuildArtifacts@0
-  #           inputs:
-  #             artifactName: $(artifact)
-  #             downloadPath: "$(System.DefaultWorkingDirectory)"
-
-  #         - task: AzureFileCopy@4
-  #           inputs:
-  #             SourcePath: 'drop/ngapp/*'
-  #             azureSubscription: 'conNet5App'
-  #             Destination: 'AzureBlob'
-  #             storage: 'net5ngui'
-  #             ContainerName: $web
