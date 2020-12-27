@@ -17,6 +17,6 @@ echo "Primary Endpoint for Static Web: " $ep
 
 az storage blob service-properties update --account-name $acct --static-website --404-document error.html --index-document index.html
 
-az storage blob upload-batch --account-name $acct --account-key $key -s $path -d '$web'
+# az storage blob upload-batch --account-name $acct --account-key $key -s $path -d '$web'
 
-az storage account show --name $acct -g $grp --query "primaryEndpoints.web" --output tsv
+# az storage account show --name $acct -g $grp --query "primaryEndpoints.web" --output tsv

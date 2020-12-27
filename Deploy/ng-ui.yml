@@ -13,8 +13,23 @@ pool:
 variables:
   azureSubscription: "Visual Studio Enterprise (78033352-805c-4acd-af80-f8f95083268d)"
   uiPath: "ngUI/"
+  ngScript: "create-static-website.sh"
 
 stages:
+  - stage: "Provision"
+    jobs:
+      - job: "Provision"
+        displayName: "Provision Static WebSite"
+
+        steps:
+          - task: AzureCLI@2
+            displayName: Azure CLI
+            inputs:
+              azureSubscription: $(serviceConnection)
+              scriptType: bash
+              scriptLocation: scriptPath
+              scriptPath: Deploy/$(ngScript)
+
   - stage: Build
 
     jobs:
