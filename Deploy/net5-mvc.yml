@@ -20,14 +20,6 @@ stages:
         displayName: "Provision App Service"
 
         steps:
-          - task: Bash@3
-            inputs:
-              targetType: inline
-              script: |
-                ls
-                cd Deploy
-                ls
-
           - task: AzureCLI@2
             displayName: Azure CLI
             inputs:
@@ -39,7 +31,7 @@ stages:
   - stage: "Build"
     jobs:
       - job: "Build"
-        displayName: "Build Api"
+        displayName: "Build App"
 
         steps:
           - task: UseDotNet@2
@@ -66,7 +58,7 @@ stages:
   - stage: "Deploy"
     jobs:
       - job: "Deploy"
-        displayName: "Deploy Api"
+        displayName: "Deploy App"
 
         steps:
           - task: DownloadPipelineArtifact@2
