@@ -32,9 +32,9 @@ stages:
               scriptLocation: scriptPath
               scriptPath: Deploy/$(ngScript)
 
-  - stage: Build
+  - stage: Build and Deploy
     jobs:
-      - job: Build
+      - job: Build and Deploy
 
         steps:
           - task: NodeTool@0
@@ -58,7 +58,7 @@ stages:
               inlineScript: |
                 acct=net5ngui
                 key='vzKZMetc+2XuQsAa88fiNpkWfHQQxfFkma/lJwFXohaFmOcM/ljnkiVKD1CZbUriZFGMhYD05//gTzQ0eqqy6g=='
-                az storage blob upload-batch --account-name $acct --account-key $key -s ./ -d '$web'
+                az storage blob upload-batch --account-name $acct --account-key $key -s ./ngUI/dist/ngapp -d '$web'
 
           - task: PublishBuildArtifacts@1
             inputs:
