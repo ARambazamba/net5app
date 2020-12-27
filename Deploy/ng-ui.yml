@@ -49,6 +49,17 @@ stages:
             displayName: "npm install and build"
             workingDirectory: $(uiPath)
 
+          - task: AzureCLI@2
+            displayName: Azure CLI
+            inputs:
+              azureSubscription: $(serviceConnection)
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                acct=net5ngui
+                key='vzKZMetc+2XuQsAa88fiNpkWfHQQxfFkma/lJwFXohaFmOcM/ljnkiVKD1CZbUriZFGMhYD05//gTzQ0eqqy6g=='
+                az storage blob upload-batch --account-name $acct --account-key $key -s ./ -d '$web'
+
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: "ngUI/dist/ngUI"
@@ -56,23 +67,23 @@ stages:
               publishLocation: "Container"
             displayName: "Publish build"
 
-  - stage: "Deploy"   
-    jobs:
-      - job: "Deploy"
-        displayName: "Deploy App"
-        pool:
-          vmImage: "windows-latest"
+  # - stage: "Deploy"
+  #   jobs:
+  #     - job: "Deploy"
+  #       displayName: "Deploy App"
+  #       pool:
+  #         vmImage: "windows-latest"
 
-        steps:
-          - task: DownloadBuildArtifacts@0
-            inputs:
-              artifactName: $(artifact)
-              downloadPath: "$(System.DefaultWorkingDirectory)"
+  #       steps:
+  #         - task: DownloadBuildArtifacts@0
+  #           inputs:
+  #             artifactName: $(artifact)
+  #             downloadPath: "$(System.DefaultWorkingDirectory)"
 
-          - task: AzureFileCopy@4
-            inputs:
-              SourcePath: 'drop/ngapp/*'
-              azureSubscription: 'conNet5App'
-              Destination: 'AzureBlob'
-              storage: 'net5ngui'
-              ContainerName: $web
+  #         - task: AzureFileCopy@4
+  #           inputs:
+  #             SourcePath: 'drop/ngapp/*'
+  #             azureSubscription: 'conNet5App'
+  #             Destination: 'AzureBlob'
+  #             storage: 'net5ngui'
+  #             ContainerName: $web
