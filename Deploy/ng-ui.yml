@@ -34,7 +34,7 @@ stages:
               scriptLocation: scriptPath
               scriptPath: Deploy/$(ngScript)
 
-  - stage: Build and Deploy
+  - stage: Build_and_Deploy
     jobs:
       - job: Build_Deploy
 
