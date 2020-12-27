@@ -76,4 +76,4 @@ stages:
             inputs:
               azureSubscription: $(serviceConnection)
               appType: "webApp"
-              appName: "$(appService)"
+              appName: $(appService)
